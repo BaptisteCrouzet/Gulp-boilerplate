@@ -1,0 +1,40 @@
+{
+  "name": "To do",
+  "version": "1.0.0",
+  "description": "To do",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "todo"
+  },
+  "keywords": [
+    "seo"
+  ],
+  "author": "Baptiste Crouzet, Philippe Gambier",
+  "license": "ISC",
+  "bugs": {
+    "url": "todo"
+  },
+  "homepage": "todo",
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-minify": "^3.1.0",
+    "gulp-responsive": "^3.0.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-webp": "^4.0.1",
+    "node-sass": "^4.13.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.0"
+  }
+}
