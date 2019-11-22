@@ -1,0 +1,9 @@
+node_modules
+**/*.map
+**/maps/
+/dist/*.css
+/dist/*.map
+/assets/images/*
+/dist/*.js
+.vscode
+.idea/
