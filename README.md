@@ -23,3 +23,10 @@ Add subdirectories :
 * ```gulp images-optimize``` : Optimize images by converting png and jpeg files into webp format. Responsives images are generated too.
 * ```gulp js``` : Optimize js files by minifying it.
 * ```gulp watch``` : Watch files, serves it with a tunnel and a local server into your default browser. All tasks above are executed for the right files by pressing ```ctrl + S```.
+
+## TODO *
+* Add a JS table with all formats for responsive images
+* Add babel
+* Add config for stylus and less
+* Add html minifying
+* Add svg 
