@@ -10,7 +10,8 @@ const gulp = require('gulp'),
     concat = require('gulp-concat'),
     minify = require('gulp-minify'),
     autoprefixer = require('gulp-autoprefixer'),
-    babel = require('gulp-babel');
+    babel = require('gulp-babel'),
+    htmlmin = require('gulp-htmlmin');
 
 sass.compiler = require('node-sass');
 
@@ -378,6 +379,21 @@ gulp.task('js', function () {
         .pipe(minify())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./dist'));
+});
+
+// Task for HTML files
+gulp.task('html', () => {
+    return gulp.src('*.html')
+        .pipe(htmlmin({
+            collapseWhitespace: true,
+            minifyCSS: true,
+            minifyJS: true,
+            removeComments: true,
+            removeScriptTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            sortAttributes: true
+        }))
+        .pipe(gulp.dest('dist'));
 });
 
 // Watch task
