@@ -16,7 +16,7 @@ const gulp = require('gulp'),
 sass.compiler = require('node-sass');
 
 // Optimisation for sass files in dev
-gulp.task('sass', function () {
+gulp.task('sass', () => {
     return gulp.src('./assets/styles/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
@@ -45,7 +45,7 @@ gulp.task('sass', function () {
 });
 
 // Optimize images
-gulp.task('images-optimize', function () {
+gulp.task('images-optimize', () => {
     return gulp
         .src('./assets/images/*')
         .pipe(
@@ -369,7 +369,7 @@ gulp.task('images-optimize', function () {
 });
 
 // Task for JS Scripts
-gulp.task('js', function () {
+gulp.task('js', () => {
     return gulp.src('./assets/js/*.js')
         .pipe(sourcemaps.init())
         .pipe(babel({
@@ -397,7 +397,7 @@ gulp.task('html', () => {
 });
 
 // Watch task
-gulp.task('watch', function () {
+gulp.task('watch', () => {
     browserSync.init({
         server: {
             baseDir: "./"
