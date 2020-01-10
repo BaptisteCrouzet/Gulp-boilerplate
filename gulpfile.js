@@ -1,15 +1,16 @@
 'use strict';
 
-const gulp = require('gulp');
-const sass = require('gulp-sass');
-const sourcemaps = require('gulp-sourcemaps');
-const cleanCSS = require('gulp-clean-css');
-const browserSync = require('browser-sync').create();
-const webp = require('gulp-webp');
-const responsive = require('gulp-responsive');
-const concat = require('gulp-concat');
-const minify = require('gulp-minify');
-const autoprefixer = require('gulp-autoprefixer')
+const gulp = require('gulp'),
+    sass = require('gulp-sass'),
+    sourcemaps = require('gulp-sourcemaps'),
+    cleanCSS = require('gulp-clean-css'),
+    browserSync = require('browser-sync').create(),
+    webp = require('gulp-webp'),
+    responsive = require('gulp-responsive'),
+    concat = require('gulp-concat'),
+    minify = require('gulp-minify'),
+    autoprefixer = require('gulp-autoprefixer'),
+    babel = require('gulp-babel');
 
 sass.compiler = require('node-sass');
 
