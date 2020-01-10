@@ -370,7 +370,13 @@ gulp.task('images-optimize', function () {
 // Task for JS Scripts
 gulp.task('js', function () {
     return gulp.src('./assets/js/*.js')
+        .pipe(sourcemaps.init())
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
+        .pipe(concat('all.js'))
         .pipe(minify())
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./dist'));
 });
 
