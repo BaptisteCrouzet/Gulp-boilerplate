@@ -44,12 +44,12 @@ ToDo
 
 * ```gulp sass``` : Compile sass files with autoprefixer and minify it.
 * ```gulp images-optimize``` : Optimize images by converting png and jpeg files into webp format. Responsives images are generated too.
+* ```gulp svg``` : Optimize svg and compile theme in one sprite. Output a sass file too, used in sass compilation.
 * ```gulp js``` : Optimize js files by minifying it, running babel and compiling all files in one file.
-* ```gulp html``` : Minify your HTML by removing whitespaces and minify scripts and styles inside it.
-* ```gulp watch``` : Watch files, serves it with a tunnel and a local server into your default browser. All tasks above are executed for the right files by pressing ```ctrl + S```.
+* ```gulp html``` : Minify your HTML by removing whitespaces and minify scripts and styles inside it,.
+* ```gulp watch``` : Watch files, serves it with a tunnel and a local server into your default browser. All tasks above are executed for the right files by pressing ```ctrl + S```. Your browser will be reloaded at eaxh time.
 
 ## TODO *
 
 * Add a JS table with all formats for responsive images
 * Add config for stylus and less
-* Add svg

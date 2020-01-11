@@ -438,5 +438,6 @@ gulp.task('watch', () => {
     gulp.watch('assets/js/*.js', gulp.series('js'));
     gulp.watch('assets/images/*', gulp.series('images-optimize'));
     gulp.watch('assets/images/icons', gulp.series('svg'));
+    gulp.watch('*.html', gulp.series('html'));
     gulp.watch("**/*.*").on('change', browserSync.reload);
 });
