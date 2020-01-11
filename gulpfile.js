@@ -11,13 +11,14 @@ const gulp = require('gulp'),
     minify = require('gulp-minify'),
     autoprefixer = require('gulp-autoprefixer'),
     babel = require('gulp-babel'),
-    htmlmin = require('gulp-htmlmin');
+    htmlmin = require('gulp-htmlmin'),
+    svgSprite = require('gulp-svg-sprite');
 
 sass.compiler = require('node-sass');
 
 // Optimisation for sass files in dev
 gulp.task('sass', () => {
-    return gulp.src('./assets/styles/*.scss')
+    return gulp.src(['assets/styles/*.scss', 'dist/images/view/sprite.scss'])
         .pipe(sourcemaps.init())
         .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
         .pipe(cleanCSS({
@@ -41,13 +42,13 @@ gulp.task('sass', () => {
         .pipe(concat('main.css'))
         .pipe(autoprefixer())
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('./dist'));
+        .pipe(gulp.dest('dist'));
 });
 
 // Optimize images
 gulp.task('images-optimize', () => {
     return gulp
-        .src('./assets/images/*')
+        .src('assets/images/*')
         .pipe(
             responsive(
                 {
@@ -370,7 +371,7 @@ gulp.task('images-optimize', () => {
 
 // Task for JS Scripts
 gulp.task('js', () => {
-    return gulp.src('./assets/js/*.js')
+    return gulp.src('assets/js/*.js')
         .pipe(sourcemaps.init())
         .pipe(babel({
             presets: ['@babel/env']
@@ -378,7 +379,7 @@ gulp.task('js', () => {
         .pipe(concat('all.js'))
         .pipe(minify())
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./dist'));
+        .pipe(gulp.dest('dist'));
 });
 
 // Task for HTML files
@@ -396,6 +397,32 @@ gulp.task('html', () => {
         .pipe(gulp.dest('dist'));
 });
 
+// Task for svg ->generate svg sprite and optimized svg
+// Declare the config
+let config = {
+    shape: {
+        dimension: { // Set maximum dimensions
+            maxWidth: 50,
+            maxHeight: 50
+        },
+        transform: ['svgo']
+    },
+    mode: {
+        view: { // Activate the «view» mode
+            bust: false,
+            render: {
+                scss: true // Activate Sass output (with default options)
+            }
+        }
+    }
+};
+// Here come the task
+gulp.task('svg', () => {
+    return gulp.src('assets/images/icons/*.svg')
+        .pipe(svgSprite(config))
+        .pipe(gulp.dest('dist/images'))
+})
+
 // Watch task
 gulp.task('watch', () => {
     browserSync.init({
@@ -407,8 +434,9 @@ gulp.task('watch', () => {
         open: "local",
         reloadOnRestart: true
     })
-    gulp.watch('./assets/styles/*.scss', gulp.series('sass'));
-    gulp.watch('./assets/js/*.js', gulp.series('js'));
-    gulp.watch('./assets/images/*', gulp.series('images-optimize'));
+    gulp.watch('assets/styles/*.scss', gulp.series('sass'));
+    gulp.watch('assets/js/*.js', gulp.series('js'));
+    gulp.watch('assets/images/*', gulp.series('images-optimize'));
+    gulp.watch('assets/images/icons', gulp.series('svg'));
     gulp.watch("**/*.*").on('change', browserSync.reload);
 });
