@@ -16,25 +16,19 @@ Create a dist directory :
 
 ### Add subdirectories
 
-In assets :
+At the root of the project run :
 
-```cd assets```
+Add directories for images : ```cd assets && mkdir images && cd images && mkdir icons```
 
-```mkdir images```
-
-````cd images```
-
-```mkdir icons```
-
-In dist :
-
-```cd dist```
-
-```mkdir images```
+Add directories for assets : ````cd assets && mkdir styles && mkdir js```
 
 ## When developing
 
-When working, always make the path to your assets like if you were in the dist directory. You MUST develop in watch mode.
+When working, always make the path to your assets like if you were in the dist directory. You MUST develop in watch mode for making your code works.
+
+### I want to personnalise the behavior on my needs
+
+You can put your constraints into ```.browserslitrc``` file and ````.postcss.config.js```. They allows you to supports some, browsers, code cleaning and futur CSS features.
 
 ## Pushing on production environment
 
@@ -42,7 +36,7 @@ ToDo
 
 ## Gulp tasks enable
 
-* ```gulp sass``` : Compile sass files with autoprefixer and minify it.
+* ```gulp sass``` : Compile sass (SCSS) files into CSS files. Sourcemaps are generated too. The outputStyle compressed is used here, the CSS is cleaned (note that duplicated rules will be removed). These files are concatenated into one single file named main.scss. PostCss is launched on all that code and autoprefix it, enables the futur CSS and make it compatible with the browsers following the ```.browserslistrc``` file. The task logs some stats like, original size, final size, time spent into processing and errors.
 * ```gulp images-optimize``` : Optimize images by converting png and jpeg files into webp format. Responsives images are generated too.
 * ```gulp svg``` : Optimize svg and compile theme in one sprite. Output a sass file too, used in sass compilation.
 * ```gulp js``` : Optimize js files by minifying it, running babel and compiling all files in one file.

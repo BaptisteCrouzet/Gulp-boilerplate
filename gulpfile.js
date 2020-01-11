@@ -5,14 +5,14 @@ const gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     cleanCSS = require('gulp-clean-css'),
     browserSync = require('browser-sync').create(),
-    webp = require('gulp-webp'),
     responsive = require('gulp-responsive'),
     concat = require('gulp-concat'),
     minify = require('gulp-minify'),
-    autoprefixer = require('gulp-autoprefixer'),
+    autoprefixer = require('autoprefixer'),
     babel = require('gulp-babel'),
     htmlmin = require('gulp-htmlmin'),
-    svgSprite = require('gulp-svg-sprite');
+    svgSprite = require('gulp-svg-sprite'),
+    postCss = require('gulp-postcss');
 
 sass.compiler = require('node-sass');
 
@@ -40,7 +40,7 @@ gulp.task('sass', () => {
             console.log(`Errors : ${details.errors}`);
         }))
         .pipe(concat('main.css'))
-        .pipe(autoprefixer())
+        .pipe(postCss([autoprefixer()]))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('dist'));
 });
