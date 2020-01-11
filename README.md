@@ -20,7 +20,7 @@ At the root of the project run :
 
 Add directories for images : ```cd assets && mkdir images && cd images && mkdir icons```
 
-Add directories for assets : ````cd assets && mkdir styles && mkdir js```
+Add directories for assets : ```cd assets && mkdir styles && mkdir js```
 
 ## When developing
 
@@ -28,13 +28,13 @@ When working, always make the path to your assets like if you were in the dist d
 
 ### I want to personnalise the behavior on my needs
 
-You can put your constraints into ```.browserslitrc``` file and ````.postcss.config.js```. They allows you to supports some, browsers, code cleaning and futur CSS features.
+You can put your constraints into ```.browserslitrc``` file and ```.postcss.config.js```. They allows you to supports some, browsers, code cleaning and futur CSS features.
 
 ## Pushing on production environment
 
 ToDo
 
-## Gulp tasks enable
+## Gulp tasks available
 
 * ```gulp sass``` : Compile sass (SCSS) files into CSS files. Sourcemaps are generated too. The outputStyle compressed is used here, the CSS is cleaned (note that duplicated rules will be removed). These files are concatenated into one single file named main.scss. PostCss is launched on all that code and autoprefix it, enables the futur CSS and make it compatible with the browsers following the ```.browserslistrc``` file. The task logs some stats like, original size, final size, time spent into processing and errors.
 * ```gulp images-optimize``` : Optimize images by converting png and jpeg files into webp format. Responsives images are generated too.
@@ -47,3 +47,4 @@ ToDo
 
 * Add a JS table with all formats for responsive images
 * Add config for stylus and less
+* Add a gulp prod task using npm run command
