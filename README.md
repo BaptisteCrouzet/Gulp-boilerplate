@@ -41,7 +41,9 @@ ToDo
 * ```gulp svg``` : Optimize svg and compile theme in one sprite. Output a sass file too, used in sass compilation.
 * ```gulp js``` : Optimize js files by minifying it, running babel and compiling all files in one file.
 * ```gulp html``` : Minify your HTML by removing whitespaces and minify scripts and styles inside it,.
-* ```gulp watch``` : Watch files, serves it with a tunnel and a local server into your default browser. All tasks above are executed for the right files by pressing ```ctrl + S```. Your browser will be reloaded at eaxh time.
+* ```gulp watch``` : Watch files, serves it with a tunnel and a local server into your default browser. All tasks above are executed for the right files by pressing ```ctrl + S```.
+* ```gulp prod``` : A task that runs all the others, just once, before pushing to the production environnment.
+Your browser will be reloaded at eaxh time.
 
 ## TODO *
 
