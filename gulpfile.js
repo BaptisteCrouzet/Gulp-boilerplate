@@ -441,3 +441,7 @@ gulp.task('watch', () => {
     gulp.watch('*.html', gulp.series('html'));
     gulp.watch("**/*.*").on('change', browserSync.reload);
 });
+
+gulp.task('prod', () => {
+    return gulp.series(['sass', 'js', 'images-optimize', 'svg', 'html']);
+});

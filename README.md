@@ -46,5 +46,7 @@ ToDo
 ## TODO *
 
 * Add a JS table with all formats for responsive images
+* Uglify the JS
+* Move fonts
 * Add config for stylus and less
 * Add a gulp prod task using npm run command
