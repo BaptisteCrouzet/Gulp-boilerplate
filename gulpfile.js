@@ -12,7 +12,9 @@ const gulp = require('gulp'),
     babel = require('gulp-babel'),
     htmlmin = require('gulp-htmlmin'),
     svgSprite = require('gulp-svg-sprite'),
-    postCss = require('gulp-postcss');
+    postCss = require('gulp-postcss'),
+    historyApiFallback = require('connect-history-api-fallback'),
+    uglify = require('gulp-uglify');;
 
 sass.compiler = require('node-sass');
 
@@ -372,13 +374,28 @@ gulp.task('images-optimize', () => {
 // Task for JS Scripts
 gulp.task('js', () => {
     return gulp.src('assets/js/*.js')
-        .pipe(sourcemaps.init())
         .pipe(babel({
             presets: ['@babel/env']
         }))
-        .pipe(concat('all.js'))
-        .pipe(minify())
-        .pipe(sourcemaps.write('.'))
+        .pipe(sourcemaps.init())
+        .pipe(uglify(
+            {
+                compress: {
+                    // compress options
+                },
+                mangle: {
+                    // mangle options
+                    toplevel: true,
+                    properties: {
+                        // mangle property options
+                    }
+                },
+                output: {
+                    // output options
+                }
+            }
+        ))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('dist'));
 });
 
@@ -425,22 +442,34 @@ gulp.task('svg', () => {
 
 // Watch task
 gulp.task('watch', () => {
+
     browserSync.init({
         server: {
             baseDir: "./"
         },
-        tunnel: true,
-        online: true,
+        tunnel: false,
+        online: false,
         open: "local",
-        reloadOnRestart: true
+        reloadOnRestart: true,
+        ui: {
+            port: 8080
+        },
+        logLevel: "debug",
+        logPrefix: 'Log',
+        middleware: [require("connect-logger")(), historyApiFallback()]
     })
     gulp.watch('assets/styles/*.scss', gulp.series('sass'));
     gulp.watch('assets/js/*.js', gulp.series('js'));
     gulp.watch('assets/images/*', gulp.series('images-optimize'));
     gulp.watch('assets/images/icons', gulp.series('svg'));
     gulp.watch('*.html', gulp.series('html'));
-    gulp.watch("**/*.*").on('change', browserSync.reload);
+    browserSync.watch("**/*.*").on('change', browserSync.reload);
 });
+
+
+// gulp.task('clean-prod', () => {
+
+// });
 
 // Prod task
 gulp.task('prod', gulp.parallel(['sass', 'js', 'images-optimize', 'svg', 'html']));

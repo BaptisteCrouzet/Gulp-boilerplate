@@ -47,8 +47,12 @@ Your browser will be reloaded at eaxh time.
 
 ## TODO *
 
-* Add a JS table with all formats for responsive images
-* Uglify the JS
+* configure Uglify JS
 * Move fonts
+* clean-prod task
+* on debug server open most used browsers and on Ui
 * Add config for stylus and less
-* Add a gulp prod task using npm run command
+* Details about logs
+* Details about browserSync
+* Add prod server
+* Add a JS table with all formats for responsive images
