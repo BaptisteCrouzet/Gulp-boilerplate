@@ -7,7 +7,6 @@ const gulp = require('gulp'),
     browserSync = require('browser-sync').create(),
     responsive = require('gulp-responsive'),
     concat = require('gulp-concat'),
-    minify = require('gulp-minify'),
     autoprefixer = require('autoprefixer'),
     babel = require('gulp-babel'),
     htmlmin = require('gulp-htmlmin'),
@@ -378,23 +377,7 @@ gulp.task('js', () => {
             presets: ['@babel/env']
         }))
         .pipe(sourcemaps.init())
-        .pipe(uglify(
-            {
-                compress: {
-                    // compress options
-                },
-                mangle: {
-                    // mangle options
-                    toplevel: true,
-                    properties: {
-                        // mangle property options
-                    }
-                },
-                output: {
-                    // output options
-                }
-            }
-        ))
+        .pipe(uglify())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('dist'));
 });

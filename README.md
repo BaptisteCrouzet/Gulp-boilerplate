@@ -47,7 +47,6 @@ Your browser will be reloaded at eaxh time.
 
 ## TODO *
 
-* configure Uglify JS
 * Move fonts
 * clean-prod task
 * on debug server open most used browsers and on Ui
