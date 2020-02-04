@@ -50,7 +50,6 @@ Your browser will be reloaded at eaxh time.
 
 ## TODO *
 
-* Fix the prod task, some errors are presents in the terminal.
 * Move manage fonts
 * clean-prod task by deleting sourcemaps and removing comments etc
 * While running the watch prod, the server open most used browsers and on Ui

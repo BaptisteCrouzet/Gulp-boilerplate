@@ -495,16 +495,14 @@ gulp.task('clean-prod', () => {
 });
 
 // Prod task
-gulp.task('prod', () => {
-    // TODO fix this task
-    return gulp.series([
-        gulp.parallel([
-            'sass-prod',
-            'js',
-            'images-optimize',
-            'svg',
-            'html'
-        ]),
-        'clean-prod'
-    ])
-});
+gulp.task('prod', gulp.series(
+    gulp.parallel(
+        'sass-prod',
+        'js',
+        'images-optimize',
+        'svg',
+        'html'
+    ),
+    'clean-prod'
+)
+);
