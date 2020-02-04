@@ -26,6 +26,8 @@ Add directories for assets : ```cd assets && mkdir styles && mkdir js```
 
 When working, always make the path to your assets like if you were in the dist directory. You MUST develop in watch mode for making your code works.
 
+Now only Sass is enabled but you shoul soon be able too use stylus or less for preprocessing CSS.
+
 ### I want to personnalise the behavior on my needs
 
 You can put your constraints into ```.browserslitrc``` file and ```.postcss.config.js```. They allows you to supports some, browsers, code cleaning and futur CSS features.
@@ -47,8 +49,8 @@ Your browser will be reloaded at eaxh time.
 
 ## TODO *
 
-* Move fonts
-* clean-prod task
+* Move manage fonts
+* clean-prod task by stoping sourcemaps by a flag and remove comments etc
 * on debug server open most used browsers and on Ui
 * Add config for stylus and less
 * Details about logs

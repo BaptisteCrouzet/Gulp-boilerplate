@@ -382,6 +382,14 @@ gulp.task('js', () => {
         .pipe(gulp.dest('dist'));
 });
 
+gulp.task('stylus', () => {
+    // TODO
+});
+
+gulp.task('less', () => {
+    // TODO
+});
+
 // Task for HTML files
 gulp.task('html', () => {
     return gulp.src('*.html')
@@ -425,7 +433,6 @@ gulp.task('svg', () => {
 
 // Watch task
 gulp.task('watch', () => {
-
     browserSync.init({
         server: {
             baseDir: "./"
@@ -441,18 +448,27 @@ gulp.task('watch', () => {
         logPrefix: 'Log',
         middleware: [require("connect-logger")(), historyApiFallback()]
     })
-    gulp.watch('assets/styles/*.scss', gulp.series('sass'));
-    gulp.watch('assets/js/*.js', gulp.series('js'));
-    gulp.watch('assets/images/*', gulp.series('images-optimize'));
-    gulp.watch('assets/images/icons', gulp.series('svg'));
-    gulp.watch('*.html', gulp.series('html'));
+    gulp.watch('assets/styles/*.scss', gulp.parallel('sass'));
+    gulp.watch('assets/js/*.js', gulp.parallel('js'));
+    gulp.watch('assets/images/*', gulp.parallel('images-optimize'));
+    gulp.watch('assets/images/icons', gulp.parallel('svg'));
+    gulp.watch('*.html', gulp.parallel('html'));
     browserSync.watch("**/*.*").on('change', browserSync.reload);
 });
 
-
-// gulp.task('clean-prod', () => {
-
-// });
+gulp.task('clean-prod', () => {
+    // TODO
+    return true;
+});
 
 // Prod task
-gulp.task('prod', gulp.parallel(['sass', 'js', 'images-optimize', 'svg', 'html']));
+gulp.task('prod', gulp.series([
+    gulp.parallel([
+        'sass',
+        'js',
+        'images-optimize',
+        'svg',
+        'html'
+    ]),
+    'clean-prod'
+]));
