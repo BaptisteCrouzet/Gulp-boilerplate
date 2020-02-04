@@ -21,7 +21,20 @@ sass.compiler = require('node-sass');
 // Optimisation for sass files in dev
 gulp.task('sass', () => {
     return gulp.src(['assets/styles/*.s+(a|c)ss', 'dist/images/view/sprite.s+(a|c)ss'])
-        .pipe(sassLint())
+        .pipe(sassLint(
+            {
+                rules: {
+                    'no-ids': 1,
+                    'no-mergeable-selectors': 1,
+                    'hex-length': [
+                        2,
+                        {
+                            'style': 'long'
+                        }
+                    ]
+                }
+            }
+        ))
         .pipe(sassLint.format())
         .pipe(sassLint.failOnError())
         .pipe(sourcemaps.init())
