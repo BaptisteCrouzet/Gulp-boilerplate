@@ -13,13 +13,17 @@ const gulp = require('gulp'),
     svgSprite = require('gulp-svg-sprite'),
     postCss = require('gulp-postcss'),
     historyApiFallback = require('connect-history-api-fallback'),
-    uglify = require('gulp-uglify');;
+    uglify = require('gulp-uglify'),
+    sassLint = require('gulp-sass-lint');
 
 sass.compiler = require('node-sass');
 
 // Optimisation for sass files in dev
 gulp.task('sass', () => {
-    return gulp.src(['assets/styles/*.scss', 'dist/images/view/sprite.scss'])
+    return gulp.src(['assets/styles/*.s+(a|c)ss', 'dist/images/view/sprite.s+(a|c)ss'])
+        .pipe(sassLint())
+        .pipe(sassLint.format())
+        .pipe(sassLint.failOnError())
         .pipe(sourcemaps.init())
         .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
         .pipe(cleanCSS({
@@ -29,20 +33,36 @@ gulp.task('sass', () => {
                     all: true
                 },
                 2: {
-                    all: true, // sets all values to `false`
+                    all: true,
                     removeDuplicateRules: true // turns on removing duplicate rules
                 }
             }
         }, (details) => {
-            console.log(`===== ${details.name} : =====`);
-            console.log(`Original size : ${details.stats.originalSize}`);
-            console.log(`Minified size : ${details.stats.minifiedSize}`);
-            console.log(`time spent in compiling : ${details.stats.timeSpent}ms`);
-            console.log(`Errors : ${details.errors}`);
+            console.log(`${details.name} : =====>> Original size : ${details.stats.originalSize}kb => Minified : ${details.stats.minifiedSize}kb (${details.stats.timeSpent}ms)`);
         }))
         .pipe(concat('main.css'))
         .pipe(postCss([autoprefixer()]))
         .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('dist'));
+});
+
+gulp.task('sass-prod', () => {
+    return gulp.src(['assets/styles/*.s+(a|c)ss', 'dist/images/view/sprite.s+(a|c)ss'])
+        .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
+        .pipe(cleanCSS({
+            debug: false,
+            level: {
+                1: {
+                    all: true
+                },
+                2: {
+                    all: true,
+                    removeDuplicateRules: true // turns on removing duplicate rules
+                }
+            }
+        }))
+        .pipe(concat('main.css'))
+        .pipe(postCss([autoprefixer()]))
         .pipe(gulp.dest('dist'));
 });
 
@@ -448,7 +468,7 @@ gulp.task('watch', () => {
         logPrefix: 'Log',
         middleware: [require("connect-logger")(), historyApiFallback()]
     })
-    gulp.watch('assets/styles/*.scss', gulp.parallel('sass'));
+    gulp.watch('assets/styles/*.s+(a|c)ss', gulp.parallel('sass'));
     gulp.watch('assets/js/*.js', gulp.parallel('js'));
     gulp.watch('assets/images/*', gulp.parallel('images-optimize'));
     gulp.watch('assets/images/icons', gulp.parallel('svg'));
@@ -462,13 +482,16 @@ gulp.task('clean-prod', () => {
 });
 
 // Prod task
-gulp.task('prod', gulp.series([
-    gulp.parallel([
-        'sass',
-        'js',
-        'images-optimize',
-        'svg',
-        'html'
-    ]),
-    'clean-prod'
-]));
+gulp.task('prod', () => {
+    // TODO fix this task
+    return gulp.series([
+        gulp.parallel([
+            'sass-prod',
+            'js',
+            'images-optimize',
+            'svg',
+            'html'
+        ]),
+        'clean-prod'
+    ])
+});
