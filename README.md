@@ -38,7 +38,8 @@ ToDo
 
 ## Gulp tasks available
 
-* ```gulp sass``` : Compile sass (SCSS) files into CSS files. Sourcemaps are generated too. The outputStyle compressed is used here, the CSS is cleaned (note that duplicated rules will be removed). These files are concatenated into one single file named main.scss. PostCss is launched on all that code and autoprefix it, enables the futur CSS and make it compatible with the browsers following the ```.browserslistrc``` file. The task logs some stats like, original size, final size, time spent into processing and errors.
+* ```gulp sass``` : Compile sass (SCSS) files into one single main.css file. Sourcemaps are generated too. The outputStyle compressed is used here, the CSS is cleaned (note that duplicated rules will be removed). These files are concatenated into one single file named main.scss. PostCss is launched on all that code and autoprefix it, enables the futur CSS and make it compatible with the browsers following the ```.browserslistrc``` file. The task logs some stats like, original size, final size, time spent into processing and errors about the code.
+* ```gulp sass-prod``` : Compile sass (SCSS) files into one single main.css file. This task don't emitts any error, log or sourcemaps. It juste compile the code.
 * ```gulp images-optimize``` : Optimize images by converting png and jpeg files into webp format. Responsives images are generated too.
 * ```gulp svg``` : Optimize svg and compile theme in one sprite. Output a sass file too, used in sass compilation.
 * ```gulp js``` : Optimize js files by minifying it, running babel and compiling all files in one file.
@@ -49,11 +50,13 @@ Your browser will be reloaded at eaxh time.
 
 ## TODO *
 
+* Fix the prod task, some errors are presents in the terminal.
 * Move manage fonts
-* clean-prod task by stoping sourcemaps by a flag and remove comments etc
-* on debug server open most used browsers and on Ui
-* Add config for stylus and less
+* clean-prod task by deleting sourcemaps and removing comments etc
+* While running the watch prod, the server open most used browsers and on Ui
+* Add prod server without logs or anithing else - it should run once the prod task
+* Add config for stylus, use linter and emitts sourcemaps
+* Add config for less, use linter and emitts sourcemaps
 * Details about logs
 * Details about browserSync
-* Add prod server
 * Add a JS table with all formats for responsive images
