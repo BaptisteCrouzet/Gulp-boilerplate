@@ -14,7 +14,8 @@ const gulp = require('gulp'),
     postCss = require('gulp-postcss'),
     historyApiFallback = require('connect-history-api-fallback'),
     uglify = require('gulp-uglify'),
-    sassLint = require('gulp-sass-lint');
+    sassLint = require('gulp-sass-lint'),
+    del = require('del');
 
 sass.compiler = require('node-sass');
 
@@ -404,13 +405,19 @@ gulp.task('images-optimize', () => {
 });
 
 // Task for JS Scripts
-gulp.task('js', () => {
+gulp.task('js-prod', () => {
     return gulp.src('assets/js/*.js')
         .pipe(babel({
             presets: ['@babel/env']
         }))
-        .pipe(sourcemaps.init())
         .pipe(uglify())
+        .pipe(gulp.dest('dist'));
+});
+
+// Task for JS Scripts
+gulp.task('js', () => {
+    return gulp.src('assets/js/*.js')
+        .pipe(sourcemaps.init())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('dist'));
 });
@@ -490,19 +497,19 @@ gulp.task('watch', () => {
 });
 
 gulp.task('clean-prod', () => {
-    // TODO
-    return true;
+    return del([
+        'dist/**/*.map'
+    ]);
 });
 
 // Prod task
 gulp.task('prod', gulp.series(
     gulp.parallel(
         'sass-prod',
-        'js',
+        'js-prod',
         'images-optimize',
         'svg',
         'html'
     ),
     'clean-prod'
-)
-);
+));
