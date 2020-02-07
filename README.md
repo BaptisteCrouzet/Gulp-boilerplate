@@ -1,8 +1,25 @@
-# Gulp boilerplate
+<h1 style="text-align: center; padding: 45px">A ready Gulp Boilerplate</h1>
 
-Needs npm : <https://nodejs.org/en/>
+This boilerplate let you start with a ready to use Gulp configuration. You are free to choose your preprocessing language for your styles and specify your constraints for for minification or browsers compatibility.
+You are welcome to create a ticket or help me at any time !
 
-Gulp : <https://gulpjs.com/>
+* Needs npm : <https://nodejs.org/en/> (v12.* at least)
+* Gulp : <https://gulpjs.com/> (v4.*)
+
+<br>
+
+**Documentation :**
+
+* [Commands to execute before starting a project](#commands-to-execute-before-starting-a-project)
+        * [Intall dependencies](#install-dependencies)
+        * [Add subdirectories](#add-subdirectories)
+* [Develop](#develop)
+        * [General behavior](#general-behavior)
+        * [Customization](#customization)
+* [Production](#production)
+* [List of gulp tasks available](#list-of-gulp-tasks-available)
+* Comming soon: Details about tasks
+* [Todos](#todos)
 
 ## Commands to execute before starting a project
 
@@ -10,49 +27,58 @@ Gulp : <https://gulpjs.com/>
 
 ```npm install```
 
-Create a dist directory :
-
-```mkdir dist```
+Maybe you can update them but I can't sure you the abality of the system to works after a `npm update`. Be carefull.
 
 ### Add subdirectories
 
-At the root of the project run :
+1. Create a dist directory :
 
-Add directories for images : ```cd assets && mkdir images && cd images && mkdir icons```
+    ```mkdir dist```
 
-Add directories for assets : ```cd assets && mkdir styles && mkdir js```
+2. At the root of the project run :
 
-## When developing
+    a. Add directories for images : ```cd assets && mkdir images && cd images && mkdir icons```
 
-When working, always make the path to your assets like if you were in the dist directory. You MUST develop in watch mode for making your code works.
+    b. Add directories for assets : ```cd assets && mkdir styles && mkdir js```
+
+## Develop
+
+### General behavior
+
+When working, always make the path to your assets like if you were in the dist directory.
+**You MUST develop in watch mode to make your code working**.
 
 Now only Sass is enabled but you shoul soon be able too use stylus or less for preprocessing CSS.
 
-### I want to personnalise the behavior on my needs
+### Customization
 
-You can put your constraints into ```.browserslitrc``` file and ```.postcss.config.js```. They allows you to supports some, browsers, code cleaning and futur CSS features.
+You can put your constraints into ```.browserslitrc``` file and ```.postcss.config.js```. They allows you to supports some browsers, code cleaning and futur CSS features.
 
-## Pushing on production environment
+Be carefull, this project is given "as is" so I can't garantee you any behavior if you alter the configuration.
 
-ToDo
+## Production
 
-## Gulp tasks available
+Comming soon
 
-* ```gulp sass``` : Compile sass (SCSS) files into one single main.css file. Sourcemaps are generated too. The outputStyle compressed is used here, the CSS is cleaned (note that duplicated rules will be removed). These files are concatenated into one single file named main.scss. PostCss is launched on all that code and autoprefix it, enables the futur CSS and make it compatible with the browsers following the ```.browserslistrc``` file. The task logs some stats like, original size, final size, time spent into processing and errors about the code.
+## List of gulp tasks available
+
+* ```gulp sass``` : Compile sass (SCSS) files into one single main.css file. Sourcemaps are generated too. The outputStyle compressed is used here, the CSS is cleaned (note that duplicated rules will be removed). These files are concatenated into one single file named main.scss. PostCss is launched on all that code and autoprefix it, enables the futur CSS and make it compatible with the browsers following the `.browserslistrc` file. The task logs some stats like, original size, final size, time spent into processing and errors about the code.
 * ```gulp sass-prod``` : Compile sass (SCSS) files into one single main.css file. This task don't emitts any error, log or sourcemaps. It juste compile the code.
 * ```gulp images-optimize``` : Optimize images by converting png and jpeg files into webp format. Responsives images are generated too.
 * ```gulp svg``` : Optimize svg and compile theme in one sprite. Output a sass file too, used in sass compilation.
-* ```gulp js``` : Optimize js files by minifying it, running babel and compiling all files in one file.
+* ```gulp js``` : Optimize JavaScript files by minifying it and generating sourcemaps.
+* ```gulp js-prod``` : Optimize your JavaScript files for the production environment. Do same things like the *gulp js* task but run babels on it following your `.browserslistrc` file.
 * ```gulp html``` : Minify your HTML by removing whitespaces and minify scripts and styles inside it,.
-* ```gulp watch``` : Watch files, serves it with a tunnel and a local server into your default browser. All tasks above are executed for the right files by pressing ```ctrl + S```.
+* ```gulp watch``` : Watch files, serves it with a tunnel and a local server into your default browser. All tasks above are executed for the right files by pressing ```ctrl + S```. Your browser will be reloaded at each time.
 * ```gulp prod``` : A task that runs all the others, just once, before pushing to the production environnment.
-Your browser will be reloaded at eaxh time.
 
-## TODO *
+## TODOs *
+
+Any help is welcome, just create a merge request or a fork, and tell me your intention to participate.
 
 * Move manage fonts
-* clean-prod task by deleting sourcemaps and removing comments etc
-* While running the watch prod, the server open most used browsers and on Ui
+* Improving clean-prod task by removing comments etc
+* While running the watch prod, the server open default browser and on Ui. Maybe add a configuration file somewhere for specifing it.
 * Add prod server without logs or anithing else - it should run once the prod task
 * Add config for stylus, use linter and emitts sourcemaps
 * Add config for less, use linter and emitts sourcemaps
