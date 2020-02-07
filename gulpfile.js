@@ -418,6 +418,7 @@ gulp.task('js-prod', () => {
 gulp.task('js', () => {
     return gulp.src('assets/js/*.js')
         .pipe(sourcemaps.init())
+        .pipe(uglify())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('dist'));
 });
