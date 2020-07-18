@@ -1,6 +1,6 @@
 'use strict';
 
-const gulp = require('gulp'),
+const { src, dest, parallel, series, watch } = require('gulp'),
     sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
     cleanCSS = require('gulp-clean-css'),
@@ -13,31 +13,13 @@ const gulp = require('gulp'),
     svgSprite = require('gulp-svg-sprite'),
     postCss = require('gulp-postcss'),
     historyApiFallback = require('connect-history-api-fallback'),
-    uglify = require('gulp-uglify'),
-    sassLint = require('gulp-sass-lint'),
-    del = require('del');
+    uglify = require('gulp-uglify');;
 
 sass.compiler = require('node-sass');
 
 // Optimisation for sass files in dev
-gulp.task('sass', () => {
-    return gulp.src(['assets/styles/*.s+(a|c)ss', 'dist/images/view/sprite.s+(a|c)ss'])
-        .pipe(sassLint(
-            {
-                rules: {
-                    'no-ids': 1,
-                    'no-mergeable-selectors': 1,
-                    'hex-length': [
-                        2,
-                        {
-                            'style': 'long'
-                        }
-                    ]
-                }
-            }
-        ))
-        .pipe(sassLint.format())
-        .pipe(sassLint.failOnError())
+function sass() {
+    return src(['assets/styles/*.scss', 'dist/images/view/sprite.scss'])
         .pipe(sourcemaps.init())
         .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
         .pipe(cleanCSS({
@@ -47,43 +29,26 @@ gulp.task('sass', () => {
                     all: true
                 },
                 2: {
-                    all: true,
+                    all: true, // sets all values to `false`
                     removeDuplicateRules: true // turns on removing duplicate rules
                 }
             }
         }, (details) => {
-            console.log(`${details.name} : =====>> Original size : ${details.stats.originalSize}kb => Minified : ${details.stats.minifiedSize}kb (${details.stats.timeSpent}ms)`);
+            console.log(`===== ${details.name} : =====`);
+            console.log(`Original size : ${details.stats.originalSize}`);
+            console.log(`Minified size : ${details.stats.minifiedSize}`);
+            console.log(`time spent in compiling : ${details.stats.timeSpent}ms`);
+            console.log(`Errors : ${details.errors}`);
         }))
         .pipe(concat('main.css'))
         .pipe(postCss([autoprefixer()]))
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('dist'));
-});
-
-gulp.task('sass-prod', () => {
-    return gulp.src(['assets/styles/*.s+(a|c)ss', 'dist/images/view/sprite.s+(a|c)ss'])
-        .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
-        .pipe(cleanCSS({
-            debug: false,
-            level: {
-                1: {
-                    all: true
-                },
-                2: {
-                    all: true,
-                    removeDuplicateRules: true // turns on removing duplicate rules
-                }
-            }
-        }))
-        .pipe(concat('main.css'))
-        .pipe(postCss([autoprefixer()]))
-        .pipe(gulp.dest('dist'));
-});
+        .pipe(dest('dist'));
+}
 
 // Optimize images
-gulp.task('images-optimize', () => {
-    return gulp
-        .src('assets/images/*')
+function imagesOptimize() {
+    return src('assets/images/*')
         .pipe(
             responsive(
                 {
@@ -401,39 +366,32 @@ gulp.task('images-optimize', () => {
                 }
             )
         )
-        .pipe(gulp.dest('dist/images'));
-});
+        .pipe(dest('dist/images'));
+}
 
 // Task for JS Scripts
-gulp.task('js-prod', () => {
-    return gulp.src('assets/js/*.js')
+function js() {
+    return src('assets/js/*.js')
         .pipe(babel({
             presets: ['@babel/env']
         }))
-        .pipe(uglify())
-        .pipe(gulp.dest('dist'));
-});
-
-// Task for JS Scripts
-gulp.task('js', () => {
-    return gulp.src('assets/js/*.js')
         .pipe(sourcemaps.init())
         .pipe(uglify())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('dist'));
-});
+        .pipe(dest('dist'));
+}
 
-gulp.task('stylus', () => {
+function stylus() {
     // TODO
-});
+}
 
-gulp.task('less', () => {
+function less() {
     // TODO
-});
+}
 
 // Task for HTML files
-gulp.task('html', () => {
-    return gulp.src('*.html')
+function html() {
+    return src('*.html')
         .pipe(htmlmin({
             collapseWhitespace: true,
             minifyCSS: true,
@@ -443,8 +401,8 @@ gulp.task('html', () => {
             removeStyleLinkTypeAttributes: true,
             sortAttributes: true
         }))
-        .pipe(gulp.dest('dist'));
-});
+        .pipe(dest('dist'));
+}
 
 // Task for svg ->generate svg sprite and optimized svg
 // Declare the config
@@ -466,14 +424,14 @@ let config = {
     }
 };
 // Here come the task
-gulp.task('svg', () => {
-    return gulp.src('assets/images/icons/*.svg')
+function svg() {
+    return src('assets/images/icons/*.svg')
         .pipe(svgSprite(config))
-        .pipe(gulp.dest('dist/images'))
-})
+        .pipe(dest('dist/images'))
+}
 
 // Watch task
-gulp.task('watch', () => {
+function watch() {
     browserSync.init({
         server: {
             baseDir: "./"
@@ -489,28 +447,29 @@ gulp.task('watch', () => {
         logPrefix: 'Log',
         middleware: [require("connect-logger")(), historyApiFallback()]
     })
-    gulp.watch('assets/styles/*.s+(a|c)ss', gulp.parallel('sass'));
-    gulp.watch('assets/js/*.js', gulp.parallel('js'));
-    gulp.watch('assets/images/*', gulp.parallel('images-optimize'));
-    gulp.watch('assets/images/icons', gulp.parallel('svg'));
-    gulp.watch('*.html', gulp.parallel('html'));
+    watch('assets/styles/*.scss', parallel('sass'));
+    watch('assets/js/*.js', parallel('js'));
+    watch('assets/images/*', parallel('images-optimize'));
+    watch('assets/images/icons', parallel('svg'));
+    watch('*.html', parallel('html'));
     browserSync.watch("**/*.*").on('change', browserSync.reload);
-});
+}
 
-gulp.task('clean-prod', () => {
-    return del([
-        'dist/**/*.map'
-    ]);
-});
+function cleanProd() {
+    // TODO
+    return true;
+}
 
 // Prod task
-gulp.task('prod', gulp.series(
-    gulp.parallel(
-        'sass-prod',
-        'js-prod',
-        'images-optimize',
-        'svg',
-        'html'
-    ),
-    'clean-prod'
-));
+function prod() {
+    return series([
+        parallel([
+            'sass',
+            'js',
+            'images-optimize',
+            'svg',
+            'html'
+        ]),
+        'clean-prod'
+    ]);
+}
