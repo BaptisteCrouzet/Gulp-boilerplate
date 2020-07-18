@@ -18,7 +18,7 @@ const { src, dest, parallel, series, watch } = require('gulp'),
 sass.compiler = require('node-sass');
 
 // Optimisation for sass files in dev
-function scss() {
+exports.scss = function scss() {
     return src(['assets/styles/*.scss', 'dist/images/view/sprite.scss'])
         .pipe(sourcemaps.init())
         .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
@@ -47,7 +47,7 @@ function scss() {
 }
 
 // Optimize images
-function imagesOptimize() {
+exports.imagesOptimize = function imagesOptimize() {
     return src('assets/images/*')
         .pipe(
             responsive(
@@ -370,7 +370,7 @@ function imagesOptimize() {
 }
 
 // Task for JS Scripts
-function js() {
+exports.js = function js() {
     return src('assets/js/*.js')
         .pipe(babel({
             presets: ['@babel/env']
@@ -381,16 +381,16 @@ function js() {
         .pipe(dest('dist'));
 }
 
-function stylus() {
+exports.stylus = function stylus() {
     // TODO
 }
 
-function less() {
+exports.less = function less() {
     // TODO
 }
 
 // Task for HTML files
-function html() {
+exports.html = function html() {
     return src('*.html')
         .pipe(htmlmin({
             collapseWhitespace: true,
@@ -424,14 +424,14 @@ let config = {
     }
 };
 // Here come the task
-function svg() {
+exports.svg = function svg() {
     return src('assets/images/icons/*.svg')
         .pipe(svgSprite(config))
         .pipe(dest('dist/images'))
 }
 
 // Watch task
-function watchbuild() {
+exports.watchBuild = function watchBuild() {
     browserSync.init({
         server: {
             baseDir: "./"
@@ -455,29 +455,20 @@ function watchbuild() {
     browserSync.watch("**/*.*").on('change', browserSync.reload);
 }
 
-function cleanProd() {
+// Clean prod task
+exports.cleanProd = function cleanProd() {
     // TODO
     return true;
 }
 
-// Export tasks
-exports = {
-    sass: scss,
-    imagesOptimize: imagesOptimize,
-    js: js,
-    stylus: stylus,
-    less: less,
-    html: html,
-    svg: svg,
-    watch: watchbuild,
-    prod: series([
-        parallel([
-            scss,
-            js,
-            imagesOptimize,
-            svg,
-            html
-        ]),
-        cleanProd
+// Prod task
+exports.prod = series([
+    parallel([
+        exports.scss,
+        exports.js,
+        exports.imagesOptimize,
+        exports.svg,
+        exports.html
     ]),
-};
+    exports.cleanProd
+]);
