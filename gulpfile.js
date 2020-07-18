@@ -18,7 +18,7 @@ const { src, dest, parallel, series, watch } = require('gulp'),
 sass.compiler = require('node-sass');
 
 // Optimisation for sass files in dev
-function sass() {
+function scss() {
     return src(['assets/styles/*.scss', 'dist/images/view/sprite.scss'])
         .pipe(sourcemaps.init())
         .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
@@ -431,7 +431,7 @@ function svg() {
 }
 
 // Watch task
-function watch() {
+function watchbuild() {
     browserSync.init({
         server: {
             baseDir: "./"
@@ -460,16 +460,24 @@ function cleanProd() {
     return true;
 }
 
-// Prod task
-function prod() {
-    return series([
+// Export tasks
+exports = {
+    sass: scss,
+    imagesOptimize: imagesOptimize,
+    js: js,
+    stylus: stylus,
+    less: less,
+    html: html,
+    svg: svg,
+    watch: watchbuild,
+    prod: series([
         parallel([
-            'sass',
-            'js',
-            'images-optimize',
-            'svg',
-            'html'
+            scss,
+            js,
+            imagesOptimize,
+            svg,
+            html
         ]),
-        'clean-prod'
-    ]);
-}
+        cleanProd
+    ]),
+};
