@@ -1,19 +1,19 @@
 'use strict';
 
-const { src, dest, parallel, series, watch } = require('gulp'),
-    sass = require('gulp-sass'),
-    sourcemaps = require('gulp-sourcemaps'),
-    cleanCSS = require('gulp-clean-css'),
-    browserSync = require('browser-sync').create(),
-    responsive = require('gulp-responsive'),
-    concat = require('gulp-concat'),
-    autoprefixer = require('autoprefixer'),
-    babel = require('gulp-babel'),
-    htmlmin = require('gulp-htmlmin'),
-    svgSprite = require('gulp-svg-sprite'),
-    postCss = require('gulp-postcss'),
-    historyApiFallback = require('connect-history-api-fallback'),
-    uglify = require('gulp-uglify');;
+import { src, dest, parallel, series, watch } from 'gulp';
+import sass from 'gulp-sass';
+import sourcemaps from 'gulp-sourcemaps';
+import cleanCSS from 'gulp-clean-css';
+import browserSync from 'browser-sync';
+import responsive from 'gulp-responsive';
+import concat from 'gulp-concat';
+import autoprefixer from 'gulp-autoprefixer';
+import babel from 'gulp-babel';
+import htmlmin from 'gulp-htmlmin';
+import svgSprite from 'gulp-svg-sprite';
+import postCss from 'gulp-postcss';
+import historyApiFallback from 'connect-history-api-fallback';
+import uglify from 'gulp-uglify';
 
 sass.compiler = require('node-sass');
 
