@@ -1,6 +1,9 @@
-<h1 style="text-align: center; padding: 45px">A ready Gulp Boilerplate</h1>
+<h1 style="text-align: center; padding: 45px">A ready Gulp Boilerplate <img src="https://i.imgur.com/DGkfo2j.png" style="width: 75px; margin-top: -20px"></h1>
 
-This boilerplate let you start with a ready to use Gulp configuration. You are free to choose your preprocessing language for your styles and specify your constraints for for minification or browsers compatibility.
+
+![](https://img.shields.io/badge/gulp%40latest-%3E%3D%204.0.2-brightgreen)    ![](https://img.shields.io/badge/node%40latest-%3E%3D%2012.16.3-brightgreen)    ![](https://img.shields.io/github/watchers/BaptisteCrouzet/https://img.shields.io/github/stars/BaptisteCrouzet/Gulp-boilerplate?style=social?style=social)    ![](https://img.shields.io/github/stars/BaptisteCrouzet/Gulp-boilerplate?style=social)    ![](https://img.shields.io/github/followers/BaptisteCrouzet?label=Happy%20followers&style=social)
+
+This boilerplate let you start with a ready to use Gulp configuration. You are free to choose your preprocessing language for your styles and specify your constraints for minification or browsers compatibility.
 You are welcome to create a ticket or help me at any time !
 
 * Needs npm : <https://nodejs.org/en/> (v12.* at least)
@@ -11,11 +14,11 @@ You are welcome to create a ticket or help me at any time !
 **Documentation :**
 
 * [Commands to execute before starting a project](#commands-to-execute-before-starting-a-project)
-        * [Intall dependencies](#install-dependencies)
-        * [Add subdirectories](#add-subdirectories)
+  * [Intall dependencies](#install-dependencies)
+  * [Add subdirectories](#add-subdirectories)
 * [Develop](#develop)
-        * [General behavior](#general-behavior)
-        * [Customization](#customization)
+  * [General behavior](#general-behavior)
+  * [Customization](#customization)
 * [Production](#production)
 * [List of gulp tasks available](#list-of-gulp-tasks-available)
 * Comming soon: Details about tasks
@@ -44,7 +47,6 @@ Maybe you can update them but I can't sure you the abality of the system to work
 ## Develop
 
 ### General behavior
-
 When working, always make the path to your assets like if you were in the dist directory.
 **You MUST develop in watch mode to make your code working**.
 
