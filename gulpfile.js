@@ -19,7 +19,9 @@ sass.compiler = require('node-sass');
 
 // Optimisation for sass files in dev
 exports.scss = function scss() {
-    return src(['assets/styles/*.scss', 'dist/images/view/sprite.scss'])
+    return src(['assets/styles/*.scss', 'dist/images/view/sprite.scss'], {
+        allowEmpty: true
+    })
         .pipe(sourcemaps.init())
         .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
         .pipe(cleanCSS({
@@ -48,7 +50,9 @@ exports.scss = function scss() {
 
 // Optimize images
 exports.imagesOptimize = function imagesOptimize() {
-    return src('assets/images/*')
+    return src('assets/images/*', {
+        allowEmpty: true
+    })
         .pipe(
             responsive(
                 {
@@ -371,7 +375,9 @@ exports.imagesOptimize = function imagesOptimize() {
 
 // Task for JS Scripts
 exports.js = function js() {
-    return src('assets/js/*.js')
+    return src('assets/js/*.js', {
+        allowEmpty: true
+    })
         .pipe(babel({
             presets: ['@babel/env']
         }))
@@ -447,7 +453,7 @@ exports.watchBuild = function watchBuild() {
         logPrefix: 'Log',
         middleware: [require("connect-logger")(), historyApiFallback()]
     })
-    watch('assets/styles/*.scss', parallel('sass'));
+    watch('assets/styles/*.scss', parallel('scss'));
     watch('assets/js/*.js', parallel('js'));
     watch('assets/images/*', parallel('images-optimize'));
     watch('assets/images/icons', parallel('svg'));
