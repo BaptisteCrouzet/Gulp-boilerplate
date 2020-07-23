@@ -1,0 +1,54 @@
+{
+    // Enables ES6 JS and JSX
+    "parserOptions": {
+        "ecmaVersion": 7,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    // Add rule about errors, warnings or ignore
+    "rules": {
+
+        // enable additional rules
+        "indent": ["error", 4],
+        "linebreak-style": ["off", "unix"],
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "camelcase": ["error", {
+            "properties" : "always",
+            "ignoreDestructuring": true
+        }],
+        "quote-props" : ["error", "as-needed"],
+        "array-bracket-newline" : ["error", {
+            "multiline" : true,
+            "minItems" : 3
+        }],
+        "eol-last" : ["error", "always"],
+        "no-mixed-spaces-and-tabs" : ["warn", "smaart-tabs"],
+        "no-multiple-empty-lines": ["error", {
+            "max": 2
+        }],
+        "no-trailing-spaces" : "error",
+        "space-before-blocks" : "error",
+        "brace-style" : ["error", "1tbs"],
+        "space-before-function-paren" : ["error", "never"],
+        "space-in-parens": ["error", "never"],
+        "template-tag-spacing": ["error", "always"],
+        "no-var": "error",
+
+        // override default options for rules from base configurations
+        "comma-dangle": ["error", "never"],
+        "no-cond-assign": ["error", "always"],
+
+        // disable rules from base configurations
+        "no-console": "off"
+    },
+    // Browser environment
+    "env": {
+        "browser": true,
+        "node": true,
+        "commonjs": true
+    },
+    "extends": "eslint:recommended" // Always present
+}
