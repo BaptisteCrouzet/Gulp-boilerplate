@@ -1,21 +1,21 @@
 {
-  "name": "Gulpboilerplate",
+  "name": "gulp-boilerplate",
   "version": "1.0.0",
-  "description": "To do",
+  "description": "This boilerplate let you start with a ready to use Gulp configuration. You are free to choose your preprocessing language for your styles and specify your constraints for minification or browsers compatibility. You are welcome to create a ticket or help me at any time !",
   "main": "index.html",
   "repository": {
     "type": "git",
-    "url": "todo"
+    "url": "https://github.com/BaptisteCrouzet/Gulp-boilerplate"
   },
   "keywords": [
-    "seo"
+    "gulp, boilerplate, js, compilation, sass, babel, es6, autoprefixer"
   ],
-  "author": "Baptiste Crouzet, Philippe Gambier",
-  "license": "ISC",
+  "author": "Baptiste Crouzet",
+  "license": "BSD-3-Clause",
   "bugs": {
-    "url": "todo"
+    "url": "https://github.com/BaptisteCrouzet/Gulp-boilerplate/issues"
   },
-  "homepage": "todo",
+  "homepage": "https://github.com/BaptisteCrouzet/Gulp-boilerplate",
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
@@ -24,11 +24,11 @@
     "connect-logger": "0.0.1",
     "cssnano": "^4.1.10",
     "del": "^5.1.0",
-    "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.2.0",
     "gulp-concat": "^2.6.1",
+    "gulp-htmlmin": "^5.0.1",
     "gulp-postcss": "^8.0.0",
     "gulp-responsive": "^3.0.1",
     "gulp-sass": "^4.0.2",
@@ -42,7 +42,8 @@
     "postcss-preset-env": "^6.7.0"
   },
   "dependencies": {
-    "gulp-htmlmin": "^5.0.1"
+    "gulp": "^4.0.2",
+    "npm": "^6.14.0"
   },
   "scripts": {
     "install": "echo \"Now creates the directories\" && cd assets && mkdir images && cd images && mkdir icons"
