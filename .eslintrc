@@ -25,7 +25,6 @@
             "minItems" : 3
         }],
         "eol-last" : ["error", "always"],
-        "no-mixed-spaces-and-tabs" : ["warn", "smaart-tabs"],
         "no-multiple-empty-lines": ["error", {
             "max": 2
         }],

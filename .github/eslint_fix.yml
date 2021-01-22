@@ -1,0 +1,27 @@
+name: Eslint Fix (Fix JS and Vue)
+
+on:
+    push:
+        branches:
+            - 'master'
+    pull_request:
+        paths:
+            - '**.js'
+
+jobs:
+    eslint:
+        runs-on: ubuntu-latest
+        continue-on-error: true
+        steps:
+            - uses: actions/checkout@v2
+              with:
+                  ref: ${{ github.head_ref }}
+            - name: Install
+              run: yarn install
+              env:
+                  CI: true
+            - name: Run eslint
+              run: yarn run eslint gulpfile.js --fix --color --max-warnings 40 --no-error-on-unmatched-pattern --ext .js
+            - uses: stefanzweifel/git-auto-commit-action@v4
+              with:
+                  commit_message: Apply eslint fixes

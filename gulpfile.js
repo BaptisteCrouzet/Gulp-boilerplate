@@ -13,7 +13,7 @@ const { src, dest, parallel, series, watch } = require('gulp'),
     svgSprite = require('gulp-svg-sprite'),
     postCss = require('gulp-postcss'),
     historyApiFallback = require('connect-history-api-fallback'),
-    uglify = require('gulp-uglify');;
+    uglify = require('gulp-uglify');
 
 sass.compiler = require('node-sass');
 
@@ -46,7 +46,7 @@ exports.scss = function scss() {
         .pipe(postCss([autoprefixer()]))
         .pipe(sourcemaps.write('./'))
         .pipe(dest('dist'));
-}
+};
 
 // Optimize images
 exports.imagesOptimize = function imagesOptimize() {
@@ -371,7 +371,7 @@ exports.imagesOptimize = function imagesOptimize() {
             )
         )
         .pipe(dest('dist/images'));
-}
+};
 
 // Task for JS Scripts
 exports.js = function js() {
@@ -385,15 +385,15 @@ exports.js = function js() {
         .pipe(uglify())
         .pipe(sourcemaps.write())
         .pipe(dest('dist'));
-}
+};
 
 exports.stylus = function stylus() {
     // TODO
-}
+};
 
 exports.less = function less() {
     // TODO
-}
+};
 
 // Task for HTML files
 exports.html = function html() {
@@ -408,7 +408,7 @@ exports.html = function html() {
             sortAttributes: true
         }))
         .pipe(dest('dist'));
-}
+};
 
 // Task for svg ->generate svg sprite and optimized svg
 // Declare the config
@@ -433,39 +433,39 @@ let config = {
 exports.svg = function svg() {
     return src('assets/images/icons/*.svg')
         .pipe(svgSprite(config))
-        .pipe(dest('dist/images'))
-}
+        .pipe(dest('dist/images'));
+};
 
 // Watch task
 exports.watchBuild = function watchBuild() {
     browserSync.init({
         server: {
-            baseDir: "./"
+            baseDir: './'
         },
         tunnel: false,
         online: false,
-        open: "local",
+        open: 'local',
         reloadOnRestart: true,
         ui: {
             port: 8080
         },
-        logLevel: "debug",
+        logLevel: 'debug',
         logPrefix: 'Log',
-        middleware: [require("connect-logger")(), historyApiFallback()]
-    })
+        middleware: [require('connect-logger')(), historyApiFallback()]
+    });
     watch('assets/styles/*.scss', parallel('scss'));
     watch('assets/js/*.js', parallel('js'));
     watch('assets/images/*', parallel('images-optimize'));
     watch('assets/images/icons', parallel('svg'));
     watch('*.html', parallel('html'));
-    browserSync.watch("**/*.*").on('change', browserSync.reload);
-}
+    browserSync.watch('**/*.*').on('change', browserSync.reload);
+};
 
 // Clean prod task
 exports.cleanProd = function cleanProd() {
     // TODO
     return true;
-}
+};
 
 // Prod task
 exports.prod = series([
