@@ -14,11 +14,11 @@ You are welcome to create a ticket or help me at any time !
 **Documentation :**
 
 * [Commands to execute before starting a project](#commands-to-execute-before-starting-a-project)
-  * [Intall dependencies](#install-dependencies)
-  * [Add subdirectories](#add-subdirectories)
+    * [Intall dependencies](#install-dependencies)
+    * [Add subdirectories](#add-subdirectories)
 * [Develop](#develop)
-  * [General behavior](#general-behavior)
-  * [Customization](#customization)
+    * [General behavior](#general-behavior)
+    * [Customization](#customization)
 * [Production](#production)
 * [List of gulp tasks available](#list-of-gulp-tasks-available)
 * Comming soon: Details about tasks
@@ -64,15 +64,17 @@ Comming soon
 
 ## List of gulp tasks available
 
-* ```gulp sass``` : Compile sass (SCSS) files into one single main.css file. Sourcemaps are generated too. The outputStyle compressed is used here, the CSS is cleaned (note that duplicated rules will be removed). These files are concatenated into one single file named main.scss. PostCss is launched on all that code and autoprefix it, enables the futur CSS and make it compatible with the browsers following the `.browserslistrc` file. The task logs some stats like, original size, final size, time spent into processing and errors about the code.
-* ```gulp sass-prod``` : Compile sass (SCSS) files into one single main.css file. This task don't emitts any error, log or sourcemaps. It juste compile the code.
-* ```gulp images-optimize``` : Optimize images by converting png and jpeg files into webp format. Responsives images are generated too.
+* ```gulp scss``` : Compile sass (SCSS) files into one single main.css file. Sourcemaps are generated too. The outputStyle compressed is used here, the CSS is cleaned (note that duplicated rules will be removed). These files are concatenated into one single file named main.scss. PostCss is launched on all that code and autoprefix it, enables the futur CSS and make it compatible with the browsers following the `.browserslistrc` file. The task logs some stats like, original size, final size, time spent into processing and errors about the code.
+* ```gulp scss-prod``` : Compile sass (SCSS) files into one single main.css file. This task don't emitts any error, log or sourcemaps. It juste compile the code.
+* ```gulp imagesOptimize``` : Optimize images by converting png and jpeg files into webp format. Responsives images are generated too.
 * ```gulp svg``` : Optimize svg and compile theme in one sprite. Output a sass file too, used in sass compilation.
 * ```gulp js``` : Optimize JavaScript files by minifying it and generating sourcemaps.
-* ```gulp js-prod``` : Optimize your JavaScript files for the production environment. Do same things like the *gulp js* task but run babels on it following your `.browserslistrc` file.
+* ```gulp jsProd``` : Optimize your JavaScript files for the production environment. Do same things like the *gulp js* task but run babels on it following your `.browserslistrc` file.
 * ```gulp html``` : Minify your HTML by removing whitespaces and minify scripts and styles inside it,.
 * ```gulp watch``` : Watch files, serves it with a tunnel and a local server into your default browser. All tasks above are executed for the right files by pressing ```ctrl + S```. Your browser will be reloaded at each time.
 * ```gulp prod``` : A task that runs all the others, just once, before pushing to the production environnment.
+* ```gulp cleanProd``` : A task for cleaning unwanted files in an production environment.
+
 
 ## TODOs *
 
