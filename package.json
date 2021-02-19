@@ -37,14 +37,14 @@
     "gulp-svg-sprite": "^1.5.0",
     "gulp-uglify": "^3.0.2",
     "gulp-webp": "^4.0.1",
-    "node-sass": "^4.14.1",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.7.0"
   },
   "dependencies": {
     "eslint": "^7.18.0",
     "gulp": "^4.0.2",
-    "npm": "^6.14.0"
+    "node-gyp": "^7.1.2",
+    "npm": "^7.5.0"
   },
   "scripts": {
     "install": "echo \"Now creates the directories\" && cd assets && mkdir images && cd images && mkdir icons"
