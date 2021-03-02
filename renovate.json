@@ -20,7 +20,7 @@
   ],
   "assignAutomerge": true,
   "assignees": ["BaptisteCrouzet"],
-  "baseBranches": ["master"],
+  "baseBranches": ["develop"],
   "branchPrefix": "hotfix/",
   "semanticCommits": "enabled"
 }
