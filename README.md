@@ -1,13 +1,15 @@
-<h1 style="text-align: center; padding: 45px">A ready Gulp Boilerplate <img src="https://i.imgur.com/DGkfo2j.png" style="width: 75px; margin-top: -20px"></h1>
+#A ready Gulp Boilerplate#
 
 
 ![](https://img.shields.io/badge/gulp%40latest-%3E%3D%204.0.2-brightgreen)    ![](https://img.shields.io/badge/node%40latest-%3E%3D%2012.16.3-brightgreen)    ![](https://img.shields.io/github/watchers/BaptisteCrouzet/https://img.shields.io/github/stars/BaptisteCrouzet/Gulp-boilerplate?style=social?style=social)    ![](https://img.shields.io/github/stars/BaptisteCrouzet/Gulp-boilerplate?style=social)    ![](https://img.shields.io/github/followers/BaptisteCrouzet?label=Happy%20followers&style=social)
 
 This boilerplate let you start with a ready to use Gulp configuration. You are free to choose your preprocessing language for your styles and specify your constraints for minification or browsers compatibility.
-You are welcome to create a ticket or help me at any time !
+You are welcome to create an issue or help me at any time !
 
-* Needs npm : <https://nodejs.org/en/> (v12.* at least)
-* Gulp : <https://gulpjs.com/> (v4.*)
+Please consider that the last release of Gulp was made in 2019, this project can be ran in 2021 but I can't promise you up-to-date plug-ins.
+
+* Needs NodeJS and npm : <https://nodejs.org/en/> (v12.* at least, v14 recommended for node)
+* Gulp : <https://gulpjs.com/> (^4.0.2)
 
 <br>
 
