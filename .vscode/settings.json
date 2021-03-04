@@ -3,5 +3,10 @@
         "activityBar.background": "#252F36",
         "titleBar.activeBackground": "#34414C",
         "titleBar.activeForeground": "#F8FAFA"
-    }
+    },
+    "conventionalCommits.scopes": [
+        "dependencies",
+        "documentation",
+        "github actions"
+    ]
 }
