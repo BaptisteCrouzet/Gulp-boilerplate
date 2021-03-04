@@ -1,4 +1,4 @@
-#A ready Gulp Boilerplate#
+# A ready Gulp Boilerplate
 
 
 ![](https://img.shields.io/badge/gulp%40latest-%3E%3D%204.0.2-brightgreen)    ![](https://img.shields.io/badge/node%40latest-%3E%3D%2012.16.3-brightgreen)    ![](https://img.shields.io/github/watchers/BaptisteCrouzet/https://img.shields.io/github/stars/BaptisteCrouzet/Gulp-boilerplate?style=social?style=social)    ![](https://img.shields.io/github/stars/BaptisteCrouzet/Gulp-boilerplate?style=social)    ![](https://img.shields.io/github/followers/BaptisteCrouzet?label=Happy%20followers&style=social)
