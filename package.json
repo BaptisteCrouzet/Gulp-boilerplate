@@ -44,7 +44,7 @@
   "dependencies": {
     "eslint": "^7.18.0",
     "gulp": "^4.0.2",
-    "node-gyp": "^7.1.2",
+    "node-gyp": "^8.0.0",
     "npm": "^7.10.0"
   },
   "scripts": {
