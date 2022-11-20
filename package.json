@@ -38,7 +38,7 @@
     "gulp-uglify": "^3.0.2",
     "gulp-webp": "^4.0.1",
     "node-sass": "^7.0.0",
-    "postcss-import": "^14.0.0",
+    "postcss-import": "^15.0.0",
     "postcss-preset-env": "^7.0.0"
   },
   "dependencies": {
