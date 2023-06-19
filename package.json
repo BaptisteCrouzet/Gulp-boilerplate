@@ -23,7 +23,7 @@
     "connect-history-api-fallback": "^1.6.0",
     "connect-logger": "0.0.1",
     "cssnano": "^5.0.0",
-    "del": "^6.0.0",
+    "del": "^7.0.0",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.3.0",
